@@ -16,9 +16,11 @@
         Me.adoptadd_pic_close.Image = Image.FromFile(Application.StartupPath & "\Data\ico\close32x.png")
         Me.adoptadd_pic_avatar.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\adoptpic.png")
         Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_agregar_normal.png")
+        Me.adoptadd_pic_edit.Image = Image.FromFile(Application.StartupPath & "\Data\ico\edit_96px.png")
         ' # ESTABLECE PARAMETROS ADICIONALES DEL FORMULARIO.
         Me.adoptadd_pic_add.Cursor = Cursors.Hand
         Me.adoptadd_pic_close.Cursor = Cursors.Hand
+        Me.adoptadd_pic_avatar.Cursor = Cursors.Hand
         ' # SI CARGA EL FORMULARIO EN MODO EDICION LLAMAMOS Y ESTABLECEMOS EL VALOR A LOS CONTROLES.
         If LoadEdit = True Then
             Me.adoptadd_pic_add.Visible = False
@@ -33,21 +35,34 @@
             Me.adoptadd_txt_fnac.Value = FechaNacimiento
             ' # BLOQUEAMOS LOS CONTROLES PARA IMPEDIR SU EDICION.
             Me.adoptadd_gb_datos.Enabled = False
+            Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_guardar_normal.png")
+            Me.adoptadd_pic_edit.Location = New Point(670, 242)
+            Me.adoptadd_pic_edit.Visible = True
+            Me.adoptadd_pic_edit.Cursor = Cursors.Hand
+            Me.adoptadd_pic_edit.SizeMode = PictureBoxSizeMode.StretchImage
         End If
     End Sub
     Private Sub adoptadd_pic_close_Click(sender As Object, e As EventArgs) Handles adoptadd_pic_close.Click
         Me.Close()
     End Sub
     Private Sub adoptadd_pic_add_MouseMove(sender As Object, e As MouseEventArgs) Handles adoptadd_pic_add.MouseMove
-        Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_agregar_hoverl.png")
+        If LoadEdit = True Then
+            Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_guardar_hover.png")
+        Else
+            Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_agregar_hoverl.png")
+        End If
     End Sub
     Private Sub adoptadd_pic_add_MouseLeave(sender As Object, e As EventArgs) Handles adoptadd_pic_add.MouseLeave
-        Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_agregar_normal.png")
+        If LoadEdit = True Then
+            Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_guardar_normal.png")
+        Else
+            Me.adoptadd_pic_add.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\btn_agregar_normal.png")
+        End If
     End Sub
     Private Sub adoptadd_pic_avatar_Click(sender As Object, e As EventArgs) Handles adoptadd_pic_avatar.Click
         ' # FUNCION QUE CARGA LA IMAGEN DEL CLIENTE
         If Foto <> "" Then
-            MISC_DELETEFILE(ConfigParametros("path_avatar") & Foto)
+            'MISC_DELETEFILE(ConfigParametros("path_avatar") & Foto)
         End If
         Me.adoptadd_fd_imagen = New OpenFileDialog
         Me.adoptadd_fd_imagen.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
@@ -91,7 +106,17 @@
                 Me.Close()
             End If
         Else
-
+            ' # RUTINA PARA LA ACTUALZIACION DE DATOS.
+            If PGSQL_UPDATEADOPTANTE(AdoptID, Me.adoptadd_txt_nombre.Text, Me.adoptadd_txt_apellidop.Text, Me.adoptadd_txt_apellidom.Text, Me.adoptadd_txt_rut.Text, _
+                                  Me.adoptadd_txt_fnac.Value, Me.adoptadd_txt_telefono.Text, Me.adoptadd_txt_celular.Text, Me.adoptadd_txt_direccion.Text, Foto) = True Then
+                frmCall.NuevoAdoptanteADD()
+                Me.Close()
+            End If
         End If
+    End Sub
+    Private Sub adoptadd_pic_edit_Click(sender As Object, e As EventArgs) Handles adoptadd_pic_edit.Click
+        Me.adoptadd_gb_datos.Enabled = True
+        Me.adoptadd_pic_add.Visible = True
+        Me.adoptadd_pic_edit.Visible = False
     End Sub
 End Class

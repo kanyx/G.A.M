@@ -170,5 +170,62 @@ Module PGSQL_Ingreso
             Return False
         End Try
     End Function
+    Public Function PGSQL_UPDATEADOPTANTE(ByVal idAdoptante As Integer, ByVal Nombre As String, ByVal ApellidoP As String, ByVal ApellidoM As String, ByVal Rut As String, _
+                                       ByVal Fnac As Date, ByVal Telefono As String, ByVal Celular As String, ByVal Direccion As String, ByVal Foto As String) As Boolean
+        Try
+            Dim PGSQLConex As New NpgsqlConnection("Host=" & ConfigParametros("bdserver") & _
+                                           ";Port=" & ConfigParametros("bdport") & _
+                                           ";Username=" & ConfigParametros("bduser") & _
+                                           ";Password=" & ConfigParametros("bdpass") & _
+                                           ";Database=" & ConfigParametros("bdname"))
+            Dim PGSQLCommand As NpgsqlCommand
+            PGSQLConex.Open()
+            PGSQLCommand = New NpgsqlCommand
+            PGSQLCommand.Connection = PGSQLConex
+            PGSQLCommand.CommandType = CommandType.Text
+            PGSQLCommand.CommandText = "UPDATE clientes SET nombres=@nombres, apellido_p=@apellidop, apellido_m=@apellidom, " & _
+                "telefono=@telefono, celular=@celular, direccion=@direccion, avatar=@foto, rut=@rut, fnacimiento=@fnac WHERE id=@iduser"
+            PGSQLCommand.Parameters.AddWithValue("@iduser", idAdoptante)
+            PGSQLCommand.Parameters.AddWithValue("@nombres", Nombre)
+            PGSQLCommand.Parameters.AddWithValue("@apellidop", ApellidoP)
+            PGSQLCommand.Parameters.AddWithValue("@apellidom", ApellidoM)
+            PGSQLCommand.Parameters.AddWithValue("@telefono", Telefono)
+            PGSQLCommand.Parameters.AddWithValue("@celular", Celular)
+            PGSQLCommand.Parameters.AddWithValue("@direccion", Direccion)
+            PGSQLCommand.Parameters.AddWithValue("@foto", Foto)
+            PGSQLCommand.Parameters.AddWithValue("@rut", Rut)
+            PGSQLCommand.Parameters.AddWithValue("@fnac", Fnac)
+            PGSQLCommand.ExecuteNonQuery()
+            PGSQLConex.Close()
+            Return True
+        Catch err As Exception
+            MessageBox.Show("Ocurrió un error al realizar la operación solicitada, el detalle del error se muestra a continuación: " & _
+                        vbNewLine & vbNewLine & "[DETALLE DEL ERROR]" & vbNewLine & vbNewLine & err.ToString, Application.ProductName & _
+                        " - " & Application.ProductVersion, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+            Return False
+        End Try
+    End Function
+#End Region
+#Region "ADOPCIONES"
+    Public Function PGSQL_ADDADOPCION(ByVal idMascota As Integer, ByVal idAdoptante As Integer) As Boolean
+        Try
+            Dim PGSQLConex As New NpgsqlConnection("Host=" & ConfigParametros("bdserver") & _
+                                          ";Port=" & ConfigParametros("bdport") & _
+                                          ";Username=" & ConfigParametros("bduser") & _
+                                          ";Password=" & ConfigParametros("bdpass") & _
+                                          ";Database=" & ConfigParametros("bdname"))
+            Dim PGSQLCommand As NpgsqlCommand
+            PGSQLConex.Open()
+            PGSQLCommand = New NpgsqlCommand
+            PGSQLCommand.Connection = PGSQLConex
+            PGSQLCommand.CommandType = CommandType.Text
+            PGSQLCommand.CommandText = "UPDATE mascotas SET "
+        Catch err As Exception
+            MessageBox.Show("Ocurrió un error al realizar la operación solicitada, el detalle del error se muestra a continuación: " & _
+                       vbNewLine & vbNewLine & "[DETALLE DEL ERROR]" & vbNewLine & vbNewLine & err.ToString, Application.ProductName & _
+                       " - " & Application.ProductVersion, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+            Return False
+        End Try
+    End Function
 #End Region
 End Module

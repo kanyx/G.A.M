@@ -73,6 +73,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\adopciones.Designer.vb">
+      <DependentUpon>adopciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\adopciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\adoptantes.Designer.vb">
       <DependentUpon>adoptantes.vb</DependentUpon>
     </Compile>

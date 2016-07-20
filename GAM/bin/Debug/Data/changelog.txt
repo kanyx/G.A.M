@@ -1,0 +1,4 @@
+UPDATE 20-07-2016
+************************************
+- AGREGADO: Funcion para editar adoptantes.
+- FIX: Reparado el error el cambiar foto de avatar.
