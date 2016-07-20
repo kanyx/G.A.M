@@ -117,6 +117,7 @@
     Private Sub petadd_pic_pet_Click(sender As Object, e As EventArgs) Handles petadd_pic_pet.Click
         ' # RUTINA PARA CARGAR IMAGEN DE LA MASCOTA.
         If Foto <> "" Then
+            Me.petadd_pic_pet.Image = Image.FromFile(Application.StartupPath & "\Data\grafica\picpet.png")
             MISC_DELETEFILE(ConfigParametros("path_avatar") & Foto)
         End If
         Me.petadd_fd_imagen = New OpenFileDialog
