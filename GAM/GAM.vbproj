@@ -85,6 +85,12 @@
     <Compile Include="Formularios\adoptantes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\agregar_adopciones.Designer.vb">
+      <DependentUpon>agregar_adopciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\agregar_adopciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\agregar_cliente.Designer.vb">
       <DependentUpon>agregar_cliente.vb</DependentUpon>
     </Compile>
@@ -137,8 +143,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\adopciones.resx">
+      <DependentUpon>adopciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\adoptantes.resx">
       <DependentUpon>adoptantes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\agregar_adopciones.resx">
+      <DependentUpon>agregar_adopciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\agregar_cliente.resx">
       <DependentUpon>agregar_cliente.vb</DependentUpon>

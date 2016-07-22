@@ -34,3 +34,5 @@ C:\Users\sguajardo\Desktop\Desarrollos Personales\Ambita\GAM\G.A.M\GAM\obj\Debug
 C:\Users\sguajardo\Desktop\Desarrollos Personales\Ambita\GAM\G.A.M\GAM\obj\Debug\GAM.main_login.resources
 C:\Users\sguajardo\Desktop\Desarrollos Personales\Ambita\GAM\G.A.M\GAM\obj\Debug\GAM.Resources.resources
 C:\Users\sguajardo\Desktop\Desarrollos Personales\Ambita\GAM\G.A.M\GAM\obj\Debug\GAM.vbproj.GenerateResource.Cache
+C:\Users\sguajardo\Desktop\Desarrollos Personales\Ambita\GAM\G.A.M\GAM\obj\Debug\GAM.adopciones.resources
+C:\Users\sguajardo\Desktop\Desarrollos Personales\Ambita\GAM\G.A.M\GAM\obj\Debug\GAM.agregar_adopciones.resources

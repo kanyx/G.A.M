@@ -65,6 +65,14 @@ Public Class main_dashboard
             frm_adoptantes.PanelCarga = Me.main_pn_loader
             frm_adoptantes.Dock = DockStyle.Fill
             frm_adoptantes.Show()
+        ElseIf e.Node.Name = "menu_item_adopciones" Then
+            Me.main_pn_loader.Controls.Clear()
+            Dim frm_adopciones As New adopciones
+            frm_adopciones.TopLevel = False
+            Me.main_pn_loader.Controls.Add(frm_adopciones)
+            frm_adopciones.PanelCarga = main_pn_loader
+            frm_adopciones.Dock = DockStyle.Fill
+            frm_adopciones.Show()
         End If
     End Sub
     Private Function CheckForm(_form As Form) As Boolean
